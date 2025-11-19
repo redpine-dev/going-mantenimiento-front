@@ -1,0 +1,10 @@
+# Ignorar archivos generados
+dist/
+build/
+
+# Ignorar archivos de configuración
+*.config.js
+package.json
+
+# Ignorar archivos de prueba
+tests/**/*.js

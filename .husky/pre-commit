@@ -1,0 +1,6 @@
+# Ejecutar lint-staged (incluye eslint con reglas de import)
+npx lint-staged
+
+# Verificar tipos de TypeScript en archivos staged
+echo "Verificando tipos de TypeScript..."
+npx tsc --noEmit
