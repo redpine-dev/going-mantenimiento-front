@@ -4,7 +4,7 @@ import { User } from '@/modules/auth/domain/types';
 const login = async (username: string, password: string): Promise<User> => {
   const response = await fetch(`${ENVIRONMENT.API_BASE_URL}/auth/login`, {
     method: 'POST',
-    body: JSON.stringify({ name: username, password }),
+    body: JSON.stringify({ username: username, password }),
     headers: {
       'Content-Type': 'application/json',
     },
@@ -16,7 +16,11 @@ const login = async (username: string, password: string): Promise<User> => {
 
   const data = await response.json();
 
-  const { user, token } = data;
+  const { user, token } = data.data;
+
+  if (user.role !== 'admin') {
+    throw new Error('Error al iniciar sesión');
+  }
 
   localStorage.setItem('auth_token', token);
   return user;

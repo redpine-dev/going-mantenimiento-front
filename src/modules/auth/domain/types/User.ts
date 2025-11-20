@@ -1,10 +1,7 @@
-import { Enterprise } from './Enterprise';
-
 type User = {
-  name: string;
-  id: string;
-  isRedPineAdmin: boolean;
-  enterprises: Enterprise[];
+  _id: string;
+  username: string;
+  role: string;
 };
 
 export type { User };
