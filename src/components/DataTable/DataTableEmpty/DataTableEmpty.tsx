@@ -1,4 +1,4 @@
-import { FileQuestion } from 'lucide-react';
+import { Cat } from 'lucide-react';
 
 import { DataTableMessage } from '../DataTableMessage';
 import { DataTableEmptyProps } from './types';
@@ -8,7 +8,7 @@ const DataTableEmpty = ({
 }: DataTableEmptyProps) => {
   return (
     <DataTableMessage
-      icon={<FileQuestion size={72} className="text-muted-foreground" />}
+      icon={<Cat className="text-gray-400" size={72} />}
       message={emptyMessage}
     />
   );

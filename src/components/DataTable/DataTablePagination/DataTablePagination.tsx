@@ -1,40 +1,17 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Pagination } from '@/components/ui/Pagination';
 
-import { Button } from '@/components/ui/Button';
-
+import { PaginationControls } from './PaginationControls/PaginationControls';
 import { DataTablePaginationProps } from './types';
 
-const DataTablePagination = ({
-  pagination,
-  onPreviousPage,
-  onNextPage,
-  disabled = false,
-}: DataTablePaginationProps) => {
-  const { hasPrevPage, hasNextPage } = pagination;
-
+const DataTablePagination = <TData,>({
+  table,
+  options,
+}: DataTablePaginationProps<TData>) => {
   return (
-    <div className="flex items-center justify-between space-x-4 py-4">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={onPreviousPage}
-        disabled={disabled || !hasPrevPage}
-      >
-        <ChevronLeft className="size-4" />
-        Anterior
-      </Button>
-      <div className="text-sm text-gray-500">
-        Página {pagination.page} de {pagination.totalPages}
-      </div>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={onNextPage}
-        disabled={disabled || !hasNextPage}
-      >
-        Siguiente
-        <ChevronRight className="size-4" />
-      </Button>
+    <div className="flex items-center ">
+      <Pagination>
+        <PaginationControls table={table} options={options} />
+      </Pagination>
     </div>
   );
 };

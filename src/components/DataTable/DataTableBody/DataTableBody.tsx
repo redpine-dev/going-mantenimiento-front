@@ -1,6 +1,13 @@
+import { Loader2 } from 'lucide-react';
+import { cloneElement, isValidElement } from 'react';
+
+import { TableBody } from '@/components/ui/Table/TableBody';
+import { TableCell } from '@/components/ui/Table/TableCell';
+import { TableRow } from '@/components/ui/Table/TableRow/TableRow';
+import { cn } from '@/utils/styles/cn';
+
 import { DataTableEmpty } from '../DataTableEmpty';
 import { DataTableError } from '../DataTableError';
-import { DataTableLoader } from '../DataTableLoader';
 import { DataTableBodyProps } from './types';
 
 const DataTableBody = <TData,>({
@@ -10,37 +17,50 @@ const DataTableBody = <TData,>({
   onRetry,
   emptyMessage = 'No existen datos disponibles',
   children,
+  getRowClassName,
 }: DataTableBodyProps<TData>) => {
   const rows = table.getRowModel().rows;
-  const { pageSize } = table.getState().pagination;
   const cols = table.getVisibleLeafColumns().length;
 
   return (
-    <tbody>
+    <TableBody>
       {isLoading ? (
-        <DataTableLoader colSpan={cols} rowAmount={pageSize} />
+        <TableRow>
+          <TableCell colSpan={cols} className="!p-0">
+            <div
+              className={cn(
+                'flex min-h-[200px] flex-col items-center justify-center gap-4',
+              )}
+            >
+              <Loader2 className={cn('animate-spin', 'size-8')} />
+              <p
+                className={cn('font-medium text-muted-foreground', 'text-base')}
+              >
+                Cargando datos...
+              </p>
+            </div>
+          </TableCell>
+        </TableRow>
       ) : isError ? (
-        <tr className="[&&]:hover:opacity-100 ">
-          <td
-            colSpan={cols}
-            className="h-24 cursor-default text-center text-red-500"
-          >
+        <TableRow className="[&&]:hover:opacity-100 ">
+          <TableCell colSpan={cols} className="!p-0">
             <DataTableError onRetry={onRetry} />
-          </td>
-        </tr>
+          </TableCell>
+        </TableRow>
       ) : rows.length === 0 ? (
-        <tr className="[&&]:hover:opacity-100">
-          <td
-            colSpan={cols}
-            className="h-24 cursor-default text-center text-red-500"
-          >
+        <TableRow className="[&&]:hover:opacity-100">
+          <TableCell colSpan={cols} className="!p-0">
             <DataTableEmpty emptyMessage={emptyMessage} />
-          </td>
-        </tr>
+          </TableCell>
+        </TableRow>
       ) : (
-        <>{children}</>
+        <>
+          {isValidElement(children)
+            ? cloneElement(children, { getRowClassName })
+            : children}
+        </>
       )}
-    </tbody>
+    </TableBody>
   );
 };
 

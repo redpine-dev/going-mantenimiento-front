@@ -1,4 +1,4 @@
-import { Table } from '@tanstack/react-table';
+import { Row, Table } from '@tanstack/react-table';
 import { ReactNode } from 'react';
 
 type DataTableBodyProps<TData> = {
@@ -8,6 +8,7 @@ type DataTableBodyProps<TData> = {
   onRetry?: () => void;
   children: ReactNode;
   emptyMessage?: string;
+  getRowClassName?: (row: Row<TData>) => string;
 };
 
 export type { DataTableBodyProps };

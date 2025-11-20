@@ -1,5 +1,7 @@
 import { flexRender } from '@tanstack/react-table';
 
+import { TableCell } from '@/components/ui/Table/TableCell';
+import { TableRow } from '@/components/ui/Table/TableRow/TableRow';
 import { cn } from '@/utils/styles/cn';
 
 import { DataTableRowsProps } from './types';
@@ -7,18 +9,13 @@ import { DataTableRowsProps } from './types';
 const DataTableRows = <TData,>({
   rows,
   getRowClassName,
-  onRowClick,
 }: DataTableRowsProps<TData>) => {
   return (
     <>
       {rows.map(row => (
-        <tr
-          key={row.id}
-          className={getRowClassName ? getRowClassName(row) : ''}
-          onClick={() => onRowClick?.(row)}
-        >
+        <TableRow key={row.id} className={getRowClassName?.(row)}>
           {row.getVisibleCells().map(cell => (
-            <td
+            <TableCell
               key={cell.id}
               className={cn(
                 cell.column.columnDef.meta !== undefined &&
@@ -28,9 +25,9 @@ const DataTableRows = <TData,>({
               )}
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
-            </td>
+            </TableCell>
           ))}
-        </tr>
+        </TableRow>
       ))}
     </>
   );

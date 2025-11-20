@@ -1,10 +1,8 @@
-import { Pagination } from '@/modules/shared/types';
+import { Table } from '@tanstack/react-table';
 
-type DataTablePaginationProps = {
-  pagination: Pagination;
-  onPreviousPage: () => void;
-  onNextPage: () => void;
-  disabled?: boolean;
+type DataTablePaginationProps<TData> = {
+  table: Table<TData>;
+  options?: number[];
 };
 
 export type { DataTablePaginationProps };

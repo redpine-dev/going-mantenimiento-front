@@ -1,12 +1,12 @@
 import { Frown } from 'lucide-react';
 
-import { DataTableMessage } from '../DataTableMessage/DataTableMessage';
+import { DataTableMessage } from '../DataTableMessage';
 import { DataTableErrorProps } from './types';
 
 const DataTableError = ({ onRetry }: DataTableErrorProps) => {
   return (
     <DataTableMessage
-      icon={<Frown size={72} className="text-muted-foreground" />}
+      icon={<Frown className="text-gray-400" size={72} />}
       message="Ha ocurrido un error, por favor inténtelo mas tarde"
       action={onRetry}
       actionMessage="Reintentar"
