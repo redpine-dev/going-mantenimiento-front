@@ -15,7 +15,7 @@ const ClientsTable = ({
     <Table
       id="clients-table"
       size="xs"
-      containerClassName="overflow-x-auto max-w-full"
+      containerClassName="overflow-x-auto max-w-full "
     >
       <DataTableHeader table={table} />
       <DataTableBody

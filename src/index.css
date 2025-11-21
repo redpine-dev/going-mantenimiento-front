@@ -1,112 +1,163 @@
+/* ============================================
+   ALTERNATIVE 3: MODERN CONTRAST
+   ============================================
+
+   High-contrast theme with bold typography and
+   electric lime accents. Best for tech-forward
+   applications that prioritize clarity and
+   modern aesthetics.
+
+   Key Features:
+   - High contrast ratios (WCAG AAA)
+   - Dark-first design philosophy
+   - Electric lime as primary accent
+   - Bold, confident aesthetic
+   - Minimal use of gradients
+
+   To use: Replace the :root and .dark sections in
+   your src/index.css with this configuration.
+   ============================================ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9216%;
+    /* Background & Surfaces - High contrast */
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 0 0% 5%; /* Almost black for maximum contrast */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9216%;
+    --card-foreground: 0 0% 5%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9216%;
-    --primary: 320.7477 45.5319% 53.9216%;
+    --popover-foreground: 0 0% 5%;
+
+    /* Primary - Going Blue (professional) */
+    --primary: 221 96% 61%; /* #4275fa */
     --primary-foreground: 0 0% 100%;
-    --secondary: 350.4673 45.5319% 53.9216%;
+
+    /* Secondary - Dark Navy (strong contrast) */
+    --secondary: 237 26% 15%; /* #1b1a35 - Dark navy */
     --secondary-foreground: 0 0% 100%;
-    --muted: 240 4.7619% 95.8824%;
-    --muted-foreground: 240 3.8298% 46.0784%;
-    --accent: 326.6667 75% 95.2941%;
-    --accent-foreground: 320.4545 59.4595% 14.5098%;
-    --destructive: 0 84.2365% 60.1961%;
-    --destructive-foreground: 0 0% 98.0392%;
-    --border: 240 5.8824% 90%;
-    --input: 240 4.7619% 95.8824%;
-    --ring: 320.7477 45.5319% 53.9216%;
-    --chart-1: 320.7477 45.5319% 53.9216%;
-    --chart-2: 168.5106 46.5347% 39.6078%;
-    --chart-3: 270.3448 37.0213% 53.9216%;
-    --chart-4: 32.4528 67.6596% 53.9216%;
-    --chart-5: 207.4286 61.4035% 55.2941%;
-    --sidebar: 240 4.7619% 95.8824%;
-    --sidebar-foreground: 240 5.2632% 26.0784%;
-    --sidebar-primary: 320.7477 45.5319% 53.9216%;
+
+    /* Muted */
+    --muted: 0 0% 95%; /* Light gray */
+    --muted-foreground: 0 0% 30%; /* Dark gray */
+
+    /* Accent - Electric Lime (standout) */
+    --accent: 78 100% 62%; /* #bdff3b */
+    --accent-foreground: 0 0% 5%; /* Black text */
+
+    /* Destructive */
+    --destructive: 0 100% 45%; /* Darker red for better contrast */
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders - Strong definition */
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 78 100% 62%; /* Lime focus ring for visibility */
+
+    /* Chart Colors - High contrast set */
+    --chart-1: 221 96% 55%; /* Darker blue */
+    --chart-2: 78 100% 45%; /* Darker lime */
+    --chart-3: 190 60% 40%; /* Darker teal */
+    --chart-4: 330 70% 50%; /* Pink */
+    --chart-5: 295 80% 35%; /* Purple */
+    --chart-6: 15 100% 50%; /* Orange */
+
+    /* Sidebar - Light with strong borders */
+    --sidebar: 0 0% 98%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 221 96% 61%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 326.6667 75% 95.2941%;
-    --sidebar-accent-foreground: 320.4545 59.4595% 14.5098%;
-    --sidebar-border: 240 5.8824% 90%;
-    --sidebar-ring: 320.7477 45.5319% 53.9216%;
-    --font-sans: AR One Sans, ui-sans-serif, sans-serif, system-ui;
-    --font-serif: AR One Sans, ui-sans-serif, sans-serif, system-ui;
-    --font-mono: Anonymous Pro, ui-monospace, monospace;
-    --radius: 0.5rem;
-    --shadow-2xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.05);
-    --shadow-xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.05);
-    --shadow-sm:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.1), 0px 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.1), 0px 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-md:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.1), 0px 2px 4px -1px hsl(0 0% 0% / 0.1);
-    --shadow-lg:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.1), 0px 4px 6px -1px hsl(0 0% 0% / 0.1);
-    --shadow-xl:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.1), 0px 8px 10px -1px hsl(0 0% 0% / 0.1);
-    --shadow-2xl: 0px 2px 4px 0px hsl(0 0% 0% / 0.25);
-    --tracking-normal: 0rem;
+    --sidebar-accent: 78 100% 95%; /* Light lime */
+    --sidebar-accent-foreground: 0 0% 5%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 78 100% 62%;
+
+    /* Typography */
+    --font-sans: 'Overpass', ui-sans-serif, sans-serif, system-ui;
+    --font-serif: 'Overpass', ui-sans-serif, sans-serif, system-ui;
+    --font-mono: 'Overpass Mono', ui-monospace, monospace;
+
+    /* Border Radius - Minimal, modern */
+    --radius: 0.375rem;
+
+    /* Shadows - Sharp, defined */
+    --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.1);
+    --shadow-xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.12);
+    --shadow-sm: 0px 3px 6px 0px hsl(0 0% 0% / 0.15);
+    --shadow: 0px 4px 8px 0px hsl(0 0% 0% / 0.15);
+    --shadow-md: 0px 6px 12px 0px hsl(0 0% 0% / 0.18);
+    --shadow-lg: 0px 10px 20px 0px hsl(0 0% 0% / 0.2);
+    --shadow-xl: 0px 15px 30px 0px hsl(0 0% 0% / 0.25);
+    --shadow-2xl: 0px 25px 50px 0px hsl(0 0% 0% / 0.3);
+
+    --tracking-normal: -0.015em; /* Tighter for modern look */
     --spacing: 0.25rem;
   }
 
   .dark {
-    --background: 330 4.7619% 8.2353%;
-    --foreground: 0 0% 96.0784%;
-    --card: 320 5.2632% 11.1765%;
-    --card-foreground: 0 0% 96.0784%;
-    --popover: 320 5.2632% 11.1765%;
-    --popover-foreground: 0 0% 96.0784%;
-    --primary: 319.6552 60.4167% 62.3529%;
-    --primary-foreground: 318.4615 48.1481% 5.2941%;
-    --secondary: 167.6471 40.1575% 50.1961%;
-    --secondary-foreground: 165 54.5455% 4.3137%;
-    --muted: 324 5.7471% 17.0588%;
-    --muted-foreground: 240 5.0279% 64.902%;
-    --accent: 322.8571 22.1053% 18.6275%;
-    --accent-foreground: 321.4286 58.3333% 90.5882%;
-    --destructive: 0 73.7089% 41.7647%;
-    --destructive-foreground: 0 85.7143% 97.2549%;
-    --border: 324 5.7471% 17.0588%;
-    --input: 324 5.7471% 17.0588%;
-    --ring: 319.6552 60.4167% 62.3529%;
-    --chart-1: 319.6552 60.4167% 62.3529%;
-    --chart-2: 167.6471 40.1575% 50.1961%;
-    --chart-3: 270 44.5652% 63.9216%;
-    --chart-4: 32.1429 73.6842% 62.7451%;
-    --chart-5: 207.6563 74.4186% 66.2745%;
-    --sidebar: 320 5.2632% 11.1765%;
-    --sidebar-foreground: 240 5.0279% 64.902%;
-    --sidebar-primary: 319.6552 60.4167% 62.3529%;
-    --sidebar-primary-foreground: 318.4615 48.1481% 5.2941%;
-    --sidebar-accent: 322.8571 22.1053% 18.6275%;
-    --sidebar-accent-foreground: 321.4286 58.3333% 90.5882%;
-    --sidebar-border: 324 5.7471% 17.0588%;
-    --sidebar-ring: 319.6552 60.4167% 62.3529%;
-    --font-sans: AR One Sans, ui-sans-serif, sans-serif, system-ui;
-    --font-serif: AR One Sans, ui-sans-serif, sans-serif, system-ui;
-    --font-mono: Anonymous Pro, ui-monospace, monospace;
-    --radius: 0.5rem;
-    --shadow-2xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.4);
-    --shadow-xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.4);
-    --shadow-sm:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.8), 0px 1px 2px -1px hsl(0 0% 0% / 0.8);
-    --shadow:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.8), 0px 1px 2px -1px hsl(0 0% 0% / 0.8);
-    --shadow-md:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.8), 0px 2px 4px -1px hsl(0 0% 0% / 0.8);
-    --shadow-lg:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.8), 0px 4px 6px -1px hsl(0 0% 0% / 0.8);
-    --shadow-xl:
-      0px 2px 4px 0px hsl(0 0% 0% / 0.8), 0px 8px 10px -1px hsl(0 0% 0% / 0.8);
-    --shadow-2xl: 0px 2px 4px 0px hsl(0 0% 0% / 2);
+    /* Background - True dark with navy undertone */
+    --background: 237 40% 6%; /* Very dark navy-black */
+    --foreground: 0 0% 100%; /* Pure white text */
+    --card: 237 35% 10%; /* Dark navy cards */
+    --card-foreground: 0 0% 100%;
+    --popover: 237 35% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Primary - Bright blue */
+    --primary: 221 100% 70%; /* Brighter for dark bg */
+    --primary-foreground: 0 0% 0%;
+
+    /* Secondary - Medium blue */
+    --secondary: 221 80% 60%;
+    --secondary-foreground: 0 0% 0%;
+
+    /* Muted */
+    --muted: 237 25% 14%;
+    --muted-foreground: 0 0% 70%;
+
+    /* Accent - Electric Lime (pops on dark) */
+    --accent: 78 100% 62%; /* #bdff3b */
+    --accent-foreground: 0 0% 0%;
+
+    /* Destructive */
+    --destructive: 0 90% 55%;
+    --destructive-foreground: 0 0% 0%;
+
+    /* Borders - Visible but not harsh */
+    --border: 237 20% 18%;
+    --input: 237 20% 18%;
+    --ring: 78 100% 62%; /* Lime ring stands out */
+
+    /* Chart Colors - Optimized for dark */
+    --chart-1: 221 100% 70%; /* Blue */
+    --chart-2: 78 100% 62%; /* Lime */
+    --chart-3: 190 70% 60%; /* Teal */
+    --chart-4: 330 80% 70%; /* Pink */
+    --chart-5: 295 75% 55%; /* Purple */
+    --chart-6: 15 100% 60%; /* Orange */
+
+    /* Sidebar */
+    --sidebar: 237 35% 8%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 78 100% 62%; /* Lime for dark sidebar */
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 237 25% 14%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 237 20% 18%;
+    --sidebar-ring: 78 100% 62%;
+
+    /* Shadows - Strong, dramatic */
+    --shadow-2xs: 0px 1px 2px 0px hsl(0 0% 0% / 0.5);
+    --shadow-xs: 0px 2px 4px 0px hsl(0 0% 0% / 0.6);
+    --shadow-sm: 0px 3px 6px 0px hsl(0 0% 0% / 0.7);
+    --shadow: 0px 4px 8px 0px hsl(0 0% 0% / 0.7);
+    --shadow-md: 0px 6px 12px 0px hsl(0 0% 0% / 0.75);
+    --shadow-lg: 0px 10px 20px 0px hsl(0 0% 0% / 0.8);
+    --shadow-xl: 0px 15px 30px 0px hsl(0 0% 0% / 0.85);
+    --shadow-2xl: 0px 25px 50px 0px hsl(0 0% 0% / 0.9);
   }
 
   body {
@@ -119,6 +170,165 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-weight: 400;
+  }
+
+  /* Bold headings for contrast theme */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Strong emphasis on interactive elements */
+  button, a {
+    font-weight: 500;
+  }
+}
+
+/* Modern Contrast Components */
+@layer components {
+  /* Lime accent utility */
+  .accent-lime-strong {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .accent-lime-strong::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #bdff3b;
+    border-radius: 2px;
+  }
+
+  /* High contrast card */
+  .card-high-contrast {
+    background: hsl(var(--card));
+    border: 2px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  /* Lime button accent */
+  .btn-lime-accent {
+    background: #bdff3b;
+    color: #000;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px hsl(78 100% 62% / 0.3);
+  }
+
+  .btn-lime-accent:hover {
+    background: #d4ff6b;
+    box-shadow: 0 4px 12px hsl(78 100% 62% / 0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-lime-accent:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px hsl(78 100% 62% / 0.3);
+  }
+
+  /* Blue primary button */
+  .btn-blue-primary {
+    background: #4275fa;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px hsl(221 96% 61% / 0.3);
+  }
+
+  .btn-blue-primary:hover {
+    background: #5a87fb;
+    box-shadow: 0 4px 12px hsl(221 96% 61% / 0.5);
+    transform: translateY(-1px);
+  }
+
+  /* Status indicators with high contrast */
+  .status-success {
+    background: #10b981;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: calc(var(--radius) - 2px);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .status-warning {
+    background: #f59e0b;
+    color: #000;
+    padding: 0.25rem 0.75rem;
+    border-radius: calc(var(--radius) - 2px);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .status-error {
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: calc(var(--radius) - 2px);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  /* Minimal gradient for brand touch */
+  .brand-subtle-gradient {
+    background: linear-gradient(135deg,
+      hsl(var(--background)) 0%,
+      hsl(221 96% 61% / 0.03) 100%);
+  }
+
+  /* Strong dividers */
+  .divider-strong {
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      hsl(var(--border)) 20%,
+      hsl(var(--border)) 80%,
+      transparent 100%);
+  }
+
+  /* Focus states with lime */
+  .focus-lime:focus {
+    outline: 2px solid #bdff3b;
+    outline-offset: 2px;
+  }
+
+  /* Data table header styling */
+  .table-header-contrast {
+    background: hsl(var(--muted));
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: hsl(var(--muted-foreground));
+  }
+}
+
+/* Font Loading - Overpass */
+@layer base {
+  @font-face {
+    font-family: 'Overpass';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;500;600;700&display=swap');
+  }
+
+  @font-face {
+    font-family: 'Overpass Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;600;700&display=swap');
   }
 }

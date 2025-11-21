@@ -8,6 +8,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -59,33 +60,53 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      {/* <SidebarHeader>
-        <div className="flex items-center gap-2 p-2">
-          <Wrench className="size-5 text-primary" />
-          <h2 className="text-lg font-semibold">Going Mantenimiento</h2>
+      <SidebarHeader>
+        <div className="flex items-center justify-center py-4">
+          <div className="animate-logo-pulse">
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="size-20 object-contain transition-transform duration-300 hover:rotate-6 hover:scale-110 dark:brightness-0 dark:contrast-200 dark:invert"
+            />
+          </div>
         </div>
-      </SidebarHeader> */}
+      </SidebarHeader>
 
       <SidebarContent>
-        {navigationItems.map(group => (
+        {navigationItems.map((group, groupIndex) => (
           <SidebarGroup key={group.label}>
             <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {group.items.map(item => {
+                {group.items.map((item, itemIndex) => {
                   const isActive = location.pathname.startsWith(item.path);
                   const Icon = item.icon;
 
                   return (
-                    <SidebarMenuItem key={item.path}>
+                    <SidebarMenuItem
+                      key={item.path}
+                      className="animate-fade-in-left"
+                      style={{
+                        animationDelay: `${groupIndex * 100 + itemIndex * 50}ms`,
+                      }}
+                    >
                       <SidebarMenuButton
                         asChild
                         isActive={isActive}
                         tooltip={item.label}
+                        className="group/button relative overflow-hidden"
                       >
-                        <Link to={item.path}>
-                          <Icon />
-                          <span>{item.label}</span>
+                        <Link to={item.path} className="relative">
+                          {isActive && (
+                            <>
+                              <span className="absolute inset-0 animate-pulse-glow bg-primary/10 dark:bg-accent/20" />
+                              <span className="absolute inset-y-0 left-0 w-1 animate-pulse-glow bg-accent" />
+                            </>
+                          )}
+                          <Icon className="transition-all duration-300 group-hover/button:rotate-12 group-hover/button:scale-110" />
+                          <span className="transition-all duration-200">
+                            {item.label}
+                          </span>
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -101,12 +122,17 @@ export function AppSidebar() {
         <SidebarSeparator />
         <SidebarMenu>
           <SidebarMenuItem>
-            <div className="flex items-center gap-2 p-2">
-              <div className="flex size-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                {user?.username?.charAt(0).toUpperCase() || 'U'}
+            <div className="flex animate-fade-in items-center gap-3 p-2">
+              <div className="relative">
+                <div className="flex size-8 animate-avatar-pulse items-center justify-center rounded-full bg-primary font-semibold text-primary-foreground shadow-lg shadow-primary/50 dark:shadow-primary/30">
+                  {user?.username?.charAt(0).toUpperCase() || 'U'}
+                </div>
+                <div className="absolute -bottom-0.5 -right-0.5 size-3 animate-bounce-subtle rounded-full border-2 border-sidebar bg-green-500 shadow-lg shadow-green-500/50" />
               </div>
               <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-                <span className="text-sm font-medium">{user?.username}</span>
+                <span className="text-sm font-medium transition-colors">
+                  {user?.username}
+                </span>
                 <span className="text-xs capitalize text-muted-foreground">
                   {user?.role}
                 </span>
@@ -114,9 +140,16 @@ export function AppSidebar() {
             </div>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Cerrar Sesión">
-              <button onClick={handleLogout}>
-                <LogOut />
+            <SidebarMenuButton
+              asChild
+              tooltip="Cerrar Sesión"
+              className="group/logout"
+            >
+              <button
+                onClick={handleLogout}
+                className="transition-colors duration-200 hover:text-destructive"
+              >
+                <LogOut className="transition-all duration-300 group-hover/logout:-rotate-12 group-hover/logout:scale-110" />
                 <span>Cerrar Sesión</span>
               </button>
             </SidebarMenuButton>

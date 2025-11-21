@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
 import {
   ClientFormData,
   ClientFormDialog,
@@ -103,12 +102,10 @@ const ClientsPage = () => {
         </Button>
       </div>
 
-      <Card>
-        <ClientsDataManager
-          onEdit={handleOpenEditDialog}
-          onDelete={handleOpenDeleteDialog}
-        />
-      </Card>
+      <ClientsDataManager
+        onEdit={handleOpenEditDialog}
+        onDelete={handleOpenDeleteDialog}
+      />
 
       <ClientFormDialog
         open={isFormOpen}

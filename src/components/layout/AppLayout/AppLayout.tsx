@@ -19,7 +19,7 @@ export function AppLayout({ children }: AppLayoutProps) {
           <ThemeToggle />
         </header>
 
-        <div className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col p-6">
           <main>{children}</main>
         </div>
       </SidebarInset>

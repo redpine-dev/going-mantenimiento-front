@@ -15,7 +15,12 @@ const sizeStyle: Record<TableSize, string> = {
 const Table = forwardRef<TableRef, TableProps>(
   ({ size = 'base', containerClassName, className, id, ...props }, ref) => (
     <TableContext size={size}>
-      <div className={cn('size-full overflow-auto', containerClassName)}>
+      <div
+        className={cn(
+          'size-full overflow-auto rounded-xl border',
+          containerClassName,
+        )}
+      >
         <table
           ref={ref}
           className={cn(

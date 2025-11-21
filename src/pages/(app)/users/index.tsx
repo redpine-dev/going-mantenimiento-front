@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
 import { DeleteUserDialog } from '@/modules/users/components/DeleteUserDialog';
 import {
   UserFormData,
@@ -128,12 +127,10 @@ const UsersPage = () => {
         </Button>
       </div>
 
-      <Card>
-        <UsersDataManager
-          onEdit={handleOpenEditDialog}
-          onDelete={handleOpenDeleteDialog}
-        />
-      </Card>
+      <UsersDataManager
+        onEdit={handleOpenEditDialog}
+        onDelete={handleOpenDeleteDialog}
+      />
 
       <UserFormDialog
         open={isFormOpen}
