@@ -27,7 +27,7 @@ export const fetchWithAuth = async (
     url: `${ENVIRONMENT.API_BASE_URL}${endpoint}`,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
+      'x-auth-token': `${token}`,
       ...(options.headers || {}),
     },
     data: options.data,

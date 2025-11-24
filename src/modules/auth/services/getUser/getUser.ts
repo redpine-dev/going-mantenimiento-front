@@ -1,8 +1,10 @@
 import { fetchWithAuth } from '@/modules/core/api/client/fetchWithAuth';
 
-const getUser = async () => {
-  const response = await fetchWithAuth('/auth/user');
-  return response.user;
+import { User } from '../../domain/types';
+
+const getUser = async (): Promise<User> => {
+  const response = await fetchWithAuth('/auth/me');
+  return response.data.user;
 };
 
 export { getUser };

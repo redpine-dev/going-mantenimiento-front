@@ -14,10 +14,14 @@ const useHasSession = () => {
       setIsLoading(true);
       try {
         const user = await getUser();
+        if (user.role !== 'admin') {
+          throw new Error('No autorizado');
+        }
         onSetSession(user);
       } catch (error) {
         console.error(error);
         onRemoveSession();
+        localStorage.removeItem('auth_token');
       }
       setIsLoading(false);
     };

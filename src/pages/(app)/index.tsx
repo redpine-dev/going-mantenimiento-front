@@ -1,7 +1,7 @@
-import { DynamicHome } from '@/modules/core/components/DynamicHome';
+import { Navigate } from 'react-router-dom';
 
-const Index = () => {
-  return <DynamicHome />;
+const AppIndex = () => {
+  return <Navigate to="/dashboard" replace />;
 };
 
-export default Index;
+export default AppIndex;

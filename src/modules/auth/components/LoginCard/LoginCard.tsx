@@ -62,10 +62,10 @@ const LoginCard = () => {
             className="mx-auto mb-3 h-auto w-12 md:mb-4 md:w-32"
           /> */}
           <h1 className="mb-1.5 cursor-default text-2xl font-bold tracking-tight text-white md:mb-2 md:text-4xl">
-            RED PINE <span className="text-secondary">GO</span>
+            Go <span className="text-secondary">Ingeniería</span>
           </h1>
           <p className="cursor-default text-center text-sm text-white md:text-base">
-            Software Factory
+            Mantenimiento
           </p>
         </div>
 

@@ -1,14 +1,14 @@
 import { flexRender, Header } from '@tanstack/react-table';
 
+import { TableHead } from '@/components/ui/Table/TableHead/TableHead';
+import { TableHeader } from '@/components/ui/Table/TableHeader/TableHeader';
+import { TableRow } from '@/components/ui/Table/TableRow/TableRow';
 import { cn } from '@/utils/styles/cn';
 
-import { SortableDataTableHeader } from '../SortableDataTableHeader/SortableDataTableHeader';
+import { SortableDataTableHeader } from '../SortableDataTableHeader';
 import { DataTableHeaderProps } from './types';
 
-const DataTableHeader = <TData,>({
-  table,
-  headClassName,
-}: DataTableHeaderProps<TData>) => {
+const DataTableHeader = <TData,>({ table }: DataTableHeaderProps<TData>) => {
   const headerGroups = table.getHeaderGroups();
 
   const getContent = (header: Header<TData, unknown>) =>
@@ -17,12 +17,12 @@ const DataTableHeader = <TData,>({
       : flexRender(header.column.columnDef.header, header.getContext());
 
   return (
-    <thead className="sticky top-0 z-10 table-fixed bg-white">
+    <TableHeader>
       {headerGroups.map(headerGroup => (
-        <tr key={headerGroup.id}>
+        <TableRow key={headerGroup.id}>
           {headerGroup.headers.map(header => {
             return (
-              <th
+              <TableHead
                 key={header.id}
                 id={header.id}
                 style={{ width: `${header.getSize()}px` }}
@@ -30,7 +30,7 @@ const DataTableHeader = <TData,>({
                   header.column.columnDef.meta !== undefined &&
                     'headClassName' in header.column.columnDef.meta
                     ? (header.column.columnDef?.meta?.headClassName as string)
-                    : headClassName,
+                    : '',
                 )}
               >
                 {header.column.getCanSort() ? (
@@ -40,14 +40,13 @@ const DataTableHeader = <TData,>({
                 ) : (
                   getContent(header)
                 )}
-              </th>
+              </TableHead>
             );
           })}
-        </tr>
+        </TableRow>
       ))}
-    </thead>
+    </TableHeader>
   );
 };
 
 export { DataTableHeader };
-// test comment
