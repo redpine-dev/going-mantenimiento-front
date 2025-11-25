@@ -1,4 +1,10 @@
-import { Building2, LayoutDashboard, LogOut, Users } from 'lucide-react';
+import {
+  Building2,
+  ChartLineIcon,
+  LayoutDashboard,
+  LogOut,
+  Users,
+} from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import {
@@ -42,6 +48,11 @@ const navigationItems: NavigationGroup[] = [
         label: 'Usuarios',
         path: '/users',
         icon: Users,
+      },
+      {
+        label: 'Mediciones',
+        path: '/measurements',
+        icon: ChartLineIcon,
       },
     ],
   },
