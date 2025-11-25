@@ -99,7 +99,9 @@ const MeasurementsPage = () => {
             Selecciona un cliente para ver las mediciones.
           </p>
         ) : (
-          <MeasurementsDataManager clientId={selectedClientId} />
+          <div className="flex flex-col gap-2">
+            <MeasurementsDataManager clientId={selectedClientId} />
+          </div>
         )}
       </Card>
 
