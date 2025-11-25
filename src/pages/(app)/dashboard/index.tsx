@@ -1,4 +1,4 @@
-import { Building2, Users } from 'lucide-react';
+import { Building2, ChartBar, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { Button } from '@/components/ui/Button';
@@ -66,6 +66,30 @@ const DashboardPage = () => {
             <Card.Footer>
               <Button asChild className="w-full">
                 <Link to="/users">Ver Usuarios</Link>
+              </Button>
+            </Card.Footer>
+          </Card>
+
+          {/* Card Mediciones */}
+          <Card className="flex flex-col">
+            <Card.Header>
+              <div className="flex items-center gap-2">
+                <ChartBar className="size-6 text-primary" />
+                <Card.Title>Mediciones</Card.Title>
+              </div>
+              <Card.Description>
+                Gestiona las mediciones del sistema
+              </Card.Description>
+            </Card.Header>
+            <Card.Content className="flex-1">
+              <p className="text-sm text-muted-foreground">
+                Gestiona mediciones. Administra toda la información de tus
+                mediciones en un solo lugar.
+              </p>
+            </Card.Content>
+            <Card.Footer>
+              <Button asChild className="w-full">
+                <Link to="/measurements">Ver Mediciones</Link>
               </Button>
             </Card.Footer>
           </Card>
