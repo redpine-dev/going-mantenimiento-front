@@ -1,5 +1,7 @@
 export type UseCreateMeasurementRequest = {
-  date: string | Date;
+  year: number;
+  month: number;
+  opening: string;
   good: number;
   observation: number;
   unsatisfactory: number;

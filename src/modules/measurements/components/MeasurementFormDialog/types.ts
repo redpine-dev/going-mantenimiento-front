@@ -1,5 +1,7 @@
 export type MeasurementFormData = {
-  date: string;
+  year: number;
+  month: number;
+  opening: string;
   good: number;
   observation: number;
   unsatisfactory: number;
@@ -13,4 +15,5 @@ export type MeasurementFormDialogProps = {
   clientId: string;
   onSubmit: (data: MeasurementFormData) => void;
   isSubmitting?: boolean;
+  presetOpening?: string;
 };

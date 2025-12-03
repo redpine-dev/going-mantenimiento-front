@@ -1,10 +1,8 @@
 import {
   getCoreRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
-import { useState } from 'react';
 
 import { MeasurementsTable } from '../MeasurementsTable';
 import { getColumns } from './columns';
@@ -16,22 +14,14 @@ const MeasurementsDataTableManager = ({
   isError,
   onRetry,
 }: MeasurementsDataTableManagerProps) => {
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'date', desc: true }, // Default sort by date DESC
-  ]);
-
   const columns = getColumns();
 
   const table = useReactTable({
     data,
     columns,
-    state: {
-      sorting,
-    },
-    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    enableSorting: true,
+    enableSorting: false,
   });
 
   return (

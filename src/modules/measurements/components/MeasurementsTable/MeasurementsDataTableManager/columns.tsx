@@ -5,14 +5,12 @@ import { Measurement } from '@/modules/measurements/domain/types';
 export const getColumns = (): ColumnDef<Measurement>[] => [
   {
     accessorKey: 'date',
-    header: 'Fecha',
-    cell: ({ row }) =>
-      row.original.date.toLocaleDateString('es-CL', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      }),
-    enableSorting: true,
+    header: 'Mes/Año',
+    cell: ({ row }) => {
+      const mm = row.original.month;
+      const yyyy = row.original.year;
+      return `${mm}/${yyyy}`;
+    },
   },
   {
     accessorKey: 'good',

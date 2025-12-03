@@ -23,6 +23,9 @@ import { useCreateMeasurement } from '@/modules/measurements/hooks/useCreateMeas
 const MeasurementsPage = () => {
   const [selectedClientId, setSelectedClientId] = useState<string>('');
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [presetOpening, setPresetOpening] = useState<string | undefined>(
+    undefined,
+  );
 
   const { data: clients } = useGetClients();
   const createMutation = useCreateMeasurement();
@@ -32,6 +35,7 @@ const MeasurementsPage = () => {
       toast.error('Selecciona un cliente primero');
       return;
     }
+    setPresetOpening(undefined);
     setIsFormOpen(true);
   };
 
@@ -39,7 +43,9 @@ const MeasurementsPage = () => {
     try {
       await createMutation.mutateAsync({
         clientId: selectedClientId,
-        date: new Date(data.date).toISOString(),
+        year: data.year,
+        month: data.month,
+        opening: data.opening,
         good: data.good,
         observation: data.observation,
         unsatisfactory: data.unsatisfactory,
@@ -100,7 +106,13 @@ const MeasurementsPage = () => {
           </p>
         ) : (
           <div className="flex flex-col gap-2">
-            <MeasurementsDataManager clientId={selectedClientId} />
+            <MeasurementsDataManager
+              clientId={selectedClientId}
+              onAddMeasurement={opening => {
+                setPresetOpening(opening);
+                setIsFormOpen(true);
+              }}
+            />
           </div>
         )}
       </Card>
@@ -111,6 +123,7 @@ const MeasurementsPage = () => {
         clientId={selectedClientId}
         onSubmit={handleFormSubmit}
         isSubmitting={createMutation.isPending}
+        presetOpening={presetOpening}
       />
     </div>
   );

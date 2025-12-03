@@ -4,7 +4,10 @@ import { Measurement } from '@/modules/measurements/domain/types';
 const toMeasurement = (api: ApiMeasurement): Measurement => {
   return {
     id: api._id,
-    date: new Date(api.date),
+    year: api.year,
+    month: api.month,
+    monthIndex: api.monthIndex,
+    opening: api.opening,
     good: api.good,
     observation: api.observation,
     unsatisfactory: api.unsatisfactory,

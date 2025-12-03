@@ -20,12 +20,21 @@ import {
   FormMessage,
 } from '@/components/ui/Form/Form';
 import { Input } from '@/components/ui/Input/Input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/Select';
 
 import { MeasurementFormDialogProps } from './types';
 import { measurementFormSchema } from './validation';
 
 type FormValues = {
-  date: string;
+  month: string;
+  year: string;
+  opening: string;
   good: number | '';
   observation: number | '';
   unsatisfactory: number | '';
@@ -39,11 +48,14 @@ const MeasurementFormDialog = ({
   clientId,
   onSubmit,
   isSubmitting,
+  presetOpening,
 }: MeasurementFormDialogProps) => {
   const form = useForm<FormValues>({
     resolver: zodResolver(measurementFormSchema),
     defaultValues: {
-      date: '',
+      month: '',
+      year: '',
+      opening: presetOpening ?? '',
       good: 0,
       observation: 0,
       unsatisfactory: 0,
@@ -65,13 +77,16 @@ const MeasurementFormDialog = ({
 
   useEffect(() => {
     if (open) {
-      // default date to today in yyyy-mm-dd
+      // default period to current month and allowed year (2025/2026), fallback 2025
       const today = new Date();
-      const yyyy = today.getFullYear();
+      const currentYear = today.getFullYear();
+      const yyyy =
+        currentYear === 2025 || currentYear === 2026 ? currentYear : 2025;
       const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
       form.reset({
-        date: `${yyyy}-${mm}-${dd}`,
+        month: mm,
+        year: String(yyyy),
+        opening: presetOpening ?? '',
         good: 0,
         observation: 0,
         unsatisfactory: 0,
@@ -79,17 +94,14 @@ const MeasurementFormDialog = ({
         unmeasured: 0,
       });
     }
-  }, [open, form]);
+  }, [open, form, presetOpening]);
 
   const handleSubmit = (data: FormValues) => {
-    // Normalize date to 12:00 local time for the selected day
-    const normalizedDate =
-      data.date && /^\d{4}-\d{2}-\d{2}$/.test(data.date)
-        ? `${data.date}T12:00:00`
-        : data.date;
     // Ensure numeric fields are numbers and required
     onSubmit({
-      date: normalizedDate,
+      year: Number(data.year),
+      month: Number(data.month),
+      opening: data.opening,
       good: Number(data.good),
       observation: Number(data.observation),
       unsatisfactory: Number(data.unsatisfactory),
@@ -113,14 +125,81 @@ const MeasurementFormDialog = ({
             onSubmit={form.handleSubmit(handleSubmit)}
             className="space-y-4"
           >
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="month"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Mes</FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        disabled={isSubmitting}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Selecciona mes" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {Array.from({ length: 12 }, (_, i) =>
+                            String(i + 1).padStart(2, '0'),
+                          ).map(m => (
+                            <SelectItem key={m} value={m}>
+                              {m}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="year"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Año</FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        disabled={isSubmitting}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Selecciona año" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {['2025', '2026'].map(y => (
+                            <SelectItem key={y} value={y}>
+                              {y}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <FormField
               control={form.control}
-              name="date"
+              name="opening"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Fecha</FormLabel>
+                  <FormLabel>Apertura</FormLabel>
                   <FormControl>
-                    <Input type="date" {...field} disabled={isSubmitting} />
+                    <Input
+                      type="text"
+                      {...field}
+                      disabled={isSubmitting || !!presetOpening}
+                      placeholder="Nombre de la apertura"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -238,7 +317,10 @@ const MeasurementFormDialog = ({
               >
                 Cancelar
               </Button>
-              <Button type="submit" disabled={isSubmitting || !clientId}>
+              <Button
+                type="submit"
+                disabled={isSubmitting || !clientId || total <= 0}
+              >
                 {isSubmitting ? 'Guardando...' : 'Guardar'}
               </Button>
             </DialogFooter>
